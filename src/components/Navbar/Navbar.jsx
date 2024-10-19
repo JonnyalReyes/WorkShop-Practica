@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import { ShoppingCartIcon } from "@heroicons/react/20/solid";
 import { useCartContext } from "../CartContext/CartContext";
@@ -18,6 +19,11 @@ export function Navbar() {
               <div className="relative">
                 <button className="text-white hover:text-gray-400">
                   <ShoppingCartIcon className="w-6 h-6" />
+                  {productos.length > 0 && (
+                    <span className="absolute top-2 right-2 bg-red-600 text-white rounded-full w-5 h-5">
+                      {productos.length}
+                    </span>
+                  )}
                 </button>
               </div>
             </div>

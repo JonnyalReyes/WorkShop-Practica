@@ -20,7 +20,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         productos: state.productos.filter(
-          (producto) => producto.id !== action.id
+          (producto) => producto.name !== action.name
         ),
       };
     default:

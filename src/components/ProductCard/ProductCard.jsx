@@ -2,9 +2,11 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
+import { useCartDispatchContext } from "../CartContext/CartContext";
 
 export function ProductCard({ name, description, price, imageUrl }) {
   const [productoSeleccionado, setProductoSeleccionado] = useState(false);
+  const dispatch = useCartDispatchContext();
 
   return (
     <div className="flex flex-col gap-3 border border-gray-950 p-3 rounded-lg">
@@ -32,10 +34,23 @@ export function ProductCard({ name, description, price, imageUrl }) {
       </div>
       <button
         onClick={() => {
-          setProductoSeleccionado(!productoSeleccionado);
+          dispatch({
+            type: "ADD_PRODUCT",
+            producto: { name, description, price, imageUrl },
+          });
         }}
       >
         Agregar al carro de compras
+      </button>
+      <button
+        onClick={() => {
+          dispatch({
+            type: "REMOVE_PRODUCT",
+            name: name,
+          });
+        }}
+      >
+        Eliminar producto al carro de compras
       </button>
     </div>
   );
