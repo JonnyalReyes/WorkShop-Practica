@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 export default function ProductPanel() {
   const [productos, setProductos] = useState([]);
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products?limit=8")
+    fetch("https://fakestoreapi.com/products")
       .then((response) => response.json())
       .then((productos) => setProductos(productos));
   }, []);

@@ -32,7 +32,7 @@ export function Navbar() {
                   onClick={toggleCart}
                   className="text-white hover:text-gray-400"
                 >
-                  <ShoppingCartIcon className="w-6 h-6" />
+                  <ShoppingCartIcon className="w-7 h-7" />
                   {productos.length > 0 && (
                     <span className="absolute top-2 right-2 bg-red-600 text-white rounded-full w-5 h-5">
                       {productos.length}
