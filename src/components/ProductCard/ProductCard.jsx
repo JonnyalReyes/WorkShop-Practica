@@ -13,10 +13,10 @@ export function ProductCard({ name, description, price, imageUrl }) {
   const dispatch = useCartDispatchContext();
 
   return (
-    <div className="flex flex-col gap-3 border border-gray-950 p-3 rounded-lg">
+    <div className="flex flex-col gap-3 border border-gray-950 p-3 rounded-lg hover:bg-blue-50">
       {productoSeleccionado && (
         <div className="relative">
-          <div className="absolute bg-orange-400 rounded-full w-fit p-3">
+          <div className="absolute bg-orange-400 rounded-full w-fit p-3 ">
             <Image
               width={30}
               height={30}
@@ -26,11 +26,11 @@ export function ProductCard({ name, description, price, imageUrl }) {
           </div>
         </div>
       )}
-      <img src={imageUrl} className="w-40 h-40" alt="pokemonImage" />
-      <h1 className="text-2xl">{name}</h1>
+      <img src={imageUrl} className="w-40 h-40 mx-auto" alt="pokemonImage" />
+      <h1 className="text-2xl line-clamp-1">{name}</h1>
       <div>
         <span>Descripcion</span>
-        <p>{description}</p>
+        <p className="line-clamp-3">{description}</p>
       </div>
       <div>
         <span>Precio</span>
