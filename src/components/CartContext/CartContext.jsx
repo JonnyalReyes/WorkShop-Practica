@@ -17,12 +17,18 @@ const reducer = (state, action) => {
         productos: [...state.productos, action.producto],
       };
     case "REMOVE_PRODUCT":
-      return {
-        ...state,
-        productos: state.productos.filter(
-          (producto) => producto.name !== action.name
-        ),
-      };
+      const index = state.productos.findIndex(
+        (producto) => producto.name === action.name
+      );
+      if (index !== -1) {
+        const nuevosProductos = [...state.productos];
+        nuevosProductos.splice(index, 1);
+        return {
+          ...state,
+          productos: nuevosProductos,
+        };
+      }
+
     default:
       return state;
   }

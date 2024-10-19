@@ -2,10 +2,14 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-import { useCartDispatchContext } from "../CartContext/CartContext";
+import {
+  useCartContext,
+  useCartDispatchContext,
+} from "../CartContext/CartContext";
 
 export function ProductCard({ name, description, price, imageUrl }) {
   const [productoSeleccionado, setProductoSeleccionado] = useState(false);
+  const { productos } = useCartContext();
   const dispatch = useCartDispatchContext();
 
   return (
@@ -32,26 +36,32 @@ export function ProductCard({ name, description, price, imageUrl }) {
         <span>Precio</span>
         <p>${price} USD</p>
       </div>
-      <button
-        onClick={() => {
-          dispatch({
-            type: "ADD_PRODUCT",
-            producto: { name, description, price, imageUrl },
-          });
-        }}
-      >
-        Agregar al carro de compras
-      </button>
-      <button
-        onClick={() => {
-          dispatch({
-            type: "REMOVE_PRODUCT",
-            name: name,
-          });
-        }}
-      >
-        Eliminar producto al carro de compras
-      </button>
+      <div className="flex flex-row gap-3">
+        <button
+          className="bg-blue-500 text-white p-2 rounded-lg"
+          onClick={() => {
+            dispatch({
+              type: "ADD_PRODUCT",
+              producto: { name, description, price, imageUrl },
+            });
+          }}
+        >
+          Agregar
+        </button>
+        {productos.filter((producto) => producto.name === name).length > 0 && (
+          <button
+            className="bg-red-500 text-white p-2 rounded-lg"
+            onClick={() => {
+              dispatch({
+                type: "REMOVE_PRODUCT",
+                name: name,
+              });
+            }}
+          >
+            Remover
+          </button>
+        )}
+      </div>
     </div>
   );
 }
